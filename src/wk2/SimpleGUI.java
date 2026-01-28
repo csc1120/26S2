@@ -25,7 +25,7 @@ public class SimpleGUI extends Application {
         Pane root = new StackPane();
         label = new Label("Here is some text that can be manipulated with the button above.");
         Button clickMe = new Button("Click Me");
-        clickMe.setOnAction(event -> blurLabel(event));
+        clickMe.setOnAction(this::blurLabel);
         root.getChildren().addAll(label, clickMe);
 
         primaryStage.setTitle("Simple GUI");
