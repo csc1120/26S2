@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 
 /**
  * Simple example of two window GUI application
+ * <a href="https://github.com/csc1120/26S2/tree/main/src/lab4">code</a>
  */
 public class TwoWindows extends Application {
 
