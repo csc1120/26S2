@@ -1,7 +1,6 @@
 package wk4;
 
 import java.util.List;
-import java.util.function.Predicate;
 
 public class Functional {
     public static void main(String[] args) {
