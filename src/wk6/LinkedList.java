@@ -7,7 +7,7 @@ public class LinkedList<E> {
         private Node<E> next;
 
         public Node (E data){
-            this.data = data;
+            this(data, null);
         }
 
         public Node(E data, Node<E> next){
@@ -23,17 +23,13 @@ public class LinkedList<E> {
     }
 
     public int size(){
-        if(head == null){
-            return 0;
-        } else {
-            int count = 1;
-            Node<E> walker = head;
-            while(walker.next != null){
-                walker = walker.next;
-                count++;
-            }
-            return count;
+        int size = 0;
+        Node<E> walker = head;
+        while(walker != null){
+            walker = walker.next;
+            size++;
         }
+        return size;
     }
 
     public boolean add(E e){
@@ -58,14 +54,14 @@ public class LinkedList<E> {
 
     public E get(int index){
         if(index < 0 || index >= size()){
-            throw new IndexOutOfBoundsException("Invalid index "+index);
+            throw new IndexOutOfBoundsException("Invalid index: " + index + " and size: " + size());
         }
         return getNode(index).data;
     }
 
     public E remove(int index){
         if(index < 0 || index >= size()){
-            throw new IndexOutOfBoundsException("Invalid index "+index);
+            throw new IndexOutOfBoundsException("Invalid index: " + index + " and size: " + size());
         }
         if(index == 0){
             E ret = head.data;
