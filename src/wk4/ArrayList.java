@@ -103,7 +103,10 @@ public class ArrayList<E> implements List<E>, RandomAccess {
         Object[] newGuy = new Object[data.length + 1];
         System.arraycopy(data, 0, newGuy, 0, index);
         newGuy[index] = element;
-        System.arraycopy(data, index + 1, newGuy, index, newGuy.length - index);
+        if (data.length - index >= 0) {
+            System.arraycopy(data, index, newGuy, index + 1, data.length - index);
+        }
+        data = newGuy;
     }
 
     //region Unsupported Operations
