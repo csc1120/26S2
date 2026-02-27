@@ -1,23 +1,27 @@
 package wk6;
 
-public class MyLinkedList<E> {
+public class LinkedList<E> {
 
     private static class Node<E> {
         private E data;
         private Node<E> next;
+
         public Node (E data){
             this.data = data;
         }
+
         public Node(E data, Node<E> next){
             this.data = data;
             this.next = next;
         }
     }
+
     private Node<E> head;
-    //private int size;
-    public MyLinkedList(){
+
+    public LinkedList(){
         head = null;
     }
+
     public int size(){
         if(head == null){
             return 0;
@@ -31,20 +35,17 @@ public class MyLinkedList<E> {
             return count;
         }
     }
+
     public boolean add(E e){
         if(head == null){
             head = new Node<>(e);
         } else {
             Node<E> tail = getNode(size() - 1);
             tail.next = new Node<>(e);
-//            Node<E> walker = head;
-//            while (walker.next != null) {
-//                walker = walker.next;
-//            }
-//            walker.next = new Node<>(e);
         }
         return true;
     }
+
     private Node<E> getNode(int index){
         Node<E> walker = head;
         int count = 0;
@@ -54,12 +55,14 @@ public class MyLinkedList<E> {
         }
         return walker;
     }
+
     public E get(int index){
         if(index < 0 || index >= size()){
             throw new IndexOutOfBoundsException("Invalid index "+index);
         }
         return getNode(index).data;
     }
+
     public E remove(int index){
         if(index < 0 || index >= size()){
             throw new IndexOutOfBoundsException("Invalid index "+index);
