@@ -197,7 +197,7 @@ public class LinkedList<E> implements List<E> {
      * {@code Objects.equals(o, get(i))},
      * or -1 if there is no such index.
      *
-     * @param o element to search for
+     * @param target element to search for
      * @return the index of the first occurrence of the specified element in
      * this list, or -1 if this list does not contain the element
      * @throws ClassCastException   if the type of the specified element
@@ -228,7 +228,7 @@ public class LinkedList<E> implements List<E> {
      * at least one element {@code e} such that
      * {@code Objects.equals(o, e)}.
      *
-     * @param o element whose presence in this list is to be tested
+     * @param target element whose presence in this list is to be tested
      * @return {@code true} if this list contains the specified element
      * @throws ClassCastException   if the type of the specified element
      *                              is incompatible with this list
@@ -378,7 +378,7 @@ public class LinkedList<E> implements List<E> {
      * contained the specified element (or equivalently, if this list changed
      * as a result of the call).
      *
-     * @param o element to be removed from this list, if present
+     * @param target element to be removed from this list, if present
      * @return {@code true} if this list contained the specified element
      * @throws ClassCastException            if the type of the specified element
      *                                       is incompatible with this list
