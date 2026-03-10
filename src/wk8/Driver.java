@@ -1,18 +1,34 @@
 package wk8;
 
+import wk6.LinkedList;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class Driver {
     public static void main(String[] args) {
-        System.out.println(binarySearch(List.of((short)0, (short)1, (short)2, (short)3, (short)4, (short)5), (short)8));
-        System.out.println(binarySearch(List.of((short)0, (short)1, (short)2, (short)3, (short)4, (short)5), (short)3));
-        System.out.println(binarySearch(List.of((short)0, (short)1, (short)2, (short)3, (short)4, (short)5), (short)5));
-        System.out.println(binarySearch(List.of((short)0, (short)1, (short)2, (short)3, (short)4, (short)5), (short)1));
-        System.out.println(binarySearch(List.of((short)0, (short)1, (short)2, (short)3, (short)4, (short)5), (short)0));
+        List<Integer> bigList = makeBigList(999);
+        System.out.println("created");
+        long start = System.nanoTime();
+        binarySearch(bigList, -1);
+        long end = System.nanoTime();
+        System.out.println("Binary search time: " + (end - start));
+        start = System.nanoTime();
+        binarySearchR(bigList, -1);
+        end = System.nanoTime();
+        System.out.println("Recursive Binary search time: " + (end - start));
     }
 
-    public static boolean binarySearch(List<Short> list, short target) {
+    private static List<Integer> makeBigList(int size) {
+        List<Integer> bigList = new LinkedList<>();
+        for (int i = 0; i < size; i++) {
+            bigList.add(i);
+        }
+        return bigList;
+    }
+
+    public static boolean binarySearchR(List<Integer> list, int target) {
         boolean found = false;
         if (!list.isEmpty()) {
             int midpoint = list.size() / 2;

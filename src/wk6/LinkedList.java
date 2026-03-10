@@ -19,20 +19,31 @@ public class LinkedList<E> implements List<E> {
     }
 
     private Node<E> head;
+    private Node<E> tail;
 
     public LinkedList(){
         head = null;
+        tail = null;
+    }
+
+    private int size(Node<E> node) {
+        int size = 0;
+        if (node != null) {
+            size = 1 + size(node.next);
+        }
+        return size;
     }
 
     @Override
     public int size(){
-        int size = 0;
-        Node<E> walker = head;
-        while(walker != null){
-            walker = walker.next;
-            size++;
-        }
-        return size;
+        return size(head);
+//        int size = 0;
+//        Node<E> walker = head;
+//        while(walker != null){
+//            walker = walker.next;
+//            size++;
+//        }
+//        return size;
     }
 
     private Node<E> getNode(int index){
@@ -54,9 +65,10 @@ public class LinkedList<E> implements List<E> {
     public boolean add(E e){
         if(head == null){
             head = new Node<>(e);
+            tail = head;
         } else {
-            Node<E> tail = getNode(size() - 1);
             tail.next = new Node<>(e);
+            tail = tail.next;
         }
         return true;
     }
@@ -68,6 +80,7 @@ public class LinkedList<E> implements List<E> {
     }
 
     public E remove(int index){
+        // TODO fix for tail attribute
         indexCheck(index);
         if(index == 0){
             E ret = head.element;
