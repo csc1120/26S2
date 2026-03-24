@@ -19,9 +19,11 @@ public class BinarySearchTree<E extends Comparable<E>> {
     }
 
     private Node<E> root;
+    private boolean changed;
 
     public BinarySearchTree() {
         root = null;
+        changed = false;
     }
 
     public int size() {
@@ -55,15 +57,18 @@ public class BinarySearchTree<E extends Comparable<E>> {
         return found;
     }
 
-    public void add(E value) {
+    public boolean add(E value) {
+        changed = false;
         if (value == null) {
             throw new IllegalArgumentException("Tree does not support nulls");
         }
         if (root == null) {
             root = new Node<>(value);
+            changed = true;
         } else {
             add(root, value);
         }
+        return changed;
     }
 
     private void add(Node<E> node, E value) {
@@ -71,15 +76,47 @@ public class BinarySearchTree<E extends Comparable<E>> {
         if (comparison < 0) {
             if (node.rightKid == null) {
                 node.rightKid = new Node<>(value);
+                changed = true;
             } else {
                 add(node.rightKid, value);
             }
         } else if (comparison > 0) {
             if (node.leftKid == null) {
                 node.leftKid = new Node<>(value);
+                changed = true;
             } else {
                 add(node.leftKid, value);
             }
+        }
+    }
+
+    public void traverse(Consumer<E> consumer) {
+        traverse(root, consumer);
+    }
+
+    private void traverse(Node<E> node, Consumer<E> consumer) {
+        if (node != null) {
+            traverse(node.leftKid, consumer);
+            traverse(node.rightKid, consumer);
+            consumer.accept(node.value);
+        }
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        traverse(root, 1, (e, i) -> {
+            sb.append(". ".repeat(i));
+            sb.append(e.toString()).append("\n");
+        });
+        return sb.toString();
+    }
+
+    private void traverse(Node<E> node, int depth, BiConsumer<E, Integer> consumer) {
+        if (node != null) {
+            traverse(node.leftKid, depth + 1, consumer);
+            consumer.accept(node.value, depth);
+            traverse(node.rightKid, depth + 1, consumer);
         }
     }
 
