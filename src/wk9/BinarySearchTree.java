@@ -34,6 +34,14 @@ public class BinarySearchTree<E extends Comparable<E>> {
         return node == null ? 0 : 1 + size(node.leftKid) + size(node.rightKid);
     }
 
+    public int height() {
+        return height(root);
+    }
+
+    private int height(Node<E> node) {
+        return node == null ? -1 : 1 + Math.max(height(node.leftKid), height(node.rightKid));
+    }
+
     public boolean isEmpty() {
         return root == null;
     }
@@ -129,18 +137,18 @@ public class BinarySearchTree<E extends Comparable<E>> {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        traverse(root, 1, (e, i) -> {
+        inOrder(root, 0, (e, i) -> {
             sb.append(". ".repeat(i));
             sb.append(e.toString()).append("\n");
         });
         return sb.toString();
     }
 
-    private void traverse(Node<E> node, int depth, BiConsumer<E, Integer> consumer) {
+    private void inOrder(Node<E> node, int depth, BiConsumer<E, Integer> consumer) {
         if (node != null) {
-            traverse(node.leftKid, depth + 1, consumer);
+            inOrder(node.leftKid, depth + 1, consumer);
             consumer.accept(node.value, depth);
-            traverse(node.rightKid, depth + 1, consumer);
+            inOrder(node.rightKid, depth + 1, consumer);
         }
     }
 
