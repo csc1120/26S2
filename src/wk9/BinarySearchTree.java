@@ -90,14 +90,38 @@ public class BinarySearchTree<E extends Comparable<E>> {
         }
     }
 
-    public void traverse(Consumer<E> consumer) {
-        traverse(root, consumer);
+    public void preOrder(Consumer<E> consumer) {
+        preOrder(root, consumer);
     }
 
-    private void traverse(Node<E> node, Consumer<E> consumer) {
+    private void preOrder(Node<E> node, Consumer<E> consumer) {
         if (node != null) {
-            traverse(node.leftKid, consumer);
-            traverse(node.rightKid, consumer);
+            consumer.accept(node.value);
+            preOrder(node.leftKid, consumer);
+            preOrder(node.rightKid, consumer);
+        }
+    }
+
+    public void inOrder(Consumer<E> consumer) {
+        inOrder(root, consumer);
+    }
+
+    private void inOrder(Node<E> node, Consumer<E> consumer) {
+        if (node != null) {
+            inOrder(node.leftKid, consumer);
+            consumer.accept(node.value);
+            inOrder(node.rightKid, consumer);
+        }
+    }
+
+    public void postOrder(Consumer<E> consumer) {
+        postOrder(root, consumer);
+    }
+
+    private void postOrder(Node<E> node, Consumer<E> consumer) {
+        if (node != null) {
+            postOrder(node.leftKid, consumer);
+            postOrder(node.rightKid, consumer);
             consumer.accept(node.value);
         }
     }
