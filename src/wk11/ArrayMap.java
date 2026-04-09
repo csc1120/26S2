@@ -179,9 +179,9 @@ public class ArrayMap<K, V> implements Map<K, V> {
      * @throws UnsupportedOperationException if the {@code remove} operation
      *                                       is not supported by this map
      * @throws ClassCastException            if the key is of an inappropriate type for
-     *                                       this map ({@linkplain Collection##optional-restrictions optional})
+     *                                       this map
      * @throws NullPointerException          if the specified key is null and this
-     *                                       map does not permit null keys ({@linkplain Collection##optional-restrictions optional})
+     *                                       map does not permit null keys
      */
     @Override
     public V remove(Object key) {
@@ -210,13 +210,13 @@ public class ArrayMap<K, V> implements Map<K, V> {
      * @return {@code true} if this map contains a mapping for the specified
      * key
      * @throws ClassCastException   if the key is of an inappropriate type for
-     *                              this map ({@linkplain Collection##optional-restrictions optional})
+     *                              this map
      * @throws NullPointerException if the specified key is null and this map
-     *                              does not permit null keys ({@linkplain Collection##optional-restrictions optional})
+     *                              does not permit null keys
      */
     @Override
     public boolean containsKey(Object key) {
-        return false;
+        throw new UnsupportedOperationException("Did not implement");
     }
 
     /**
@@ -231,13 +231,13 @@ public class ArrayMap<K, V> implements Map<K, V> {
      * @return {@code true} if this map maps one or more keys to the
      * specified value
      * @throws ClassCastException   if the value is of an inappropriate type for
-     *                              this map ({@linkplain Collection##optional-restrictions optional})
+     *                              this map
      * @throws NullPointerException if the specified value is null and this
-     *                              map does not permit null values ({@linkplain Collection##optional-restrictions optional})
+     *                              map does not permit null values
      */
     @Override
     public boolean containsValue(Object value) {
-        return false;
+        throw new UnsupportedOperationException("Did not implement");
     }
 
     /**
@@ -260,13 +260,13 @@ public class ArrayMap<K, V> implements Map<K, V> {
      * @return the value to which the specified key is mapped, or
      * {@code null} if this map contains no mapping for the key
      * @throws ClassCastException   if the key is of an inappropriate type for
-     *                              this map ({@linkplain Collection##optional-restrictions optional})
+     *                              this map
      * @throws NullPointerException if the specified key is null and this map
-     *                              does not permit null keys ({@linkplain Collection##optional-restrictions optional})
+     *                              does not permit null keys
      */
     @Override
     public V get(Object key) {
-        return null;
+        throw new UnsupportedOperationException("Did not implement");
     }
 
     /**
@@ -292,7 +292,7 @@ public class ArrayMap<K, V> implements Map<K, V> {
      */
     @Override
     public void putAll(Map<? extends K, ? extends V> m) {
-
+        throw new UnsupportedOperationException("Did not implement");
     }
 
     /**
@@ -312,7 +312,7 @@ public class ArrayMap<K, V> implements Map<K, V> {
      */
     @Override
     public Set<K> keySet() {
-        return Set.of();
+        throw new UnsupportedOperationException("Did not implement");
     }
 
     /**
@@ -332,7 +332,7 @@ public class ArrayMap<K, V> implements Map<K, V> {
      */
     @Override
     public Collection<V> values() {
-        return List.of();
+        throw new UnsupportedOperationException("Did not implement");
     }
 
     /**
@@ -353,6 +353,6 @@ public class ArrayMap<K, V> implements Map<K, V> {
      */
     @Override
     public Set<Map.Entry<K, V>> entrySet() {
-        return Set.of();
+        throw new UnsupportedOperationException("Did not implement");
     }
 }
